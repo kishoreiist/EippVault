@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-eipp-primary: #1b357a;
+  --color-eipp-secondary: #4ea9e2; 
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+
