@@ -4,7 +4,13 @@ import { MotionDiv, MotionSpan } from "@/src/motion/motion/framer_motion";
 
 export default function About() {
   return (
-    <main id="about" className="w-full bg-bg text-text leading-relaxed">
+    <MotionDiv
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, ease: "easeOut" }}
+>
+  <main id="about" className="w-full bg-bg text-text leading-relaxed">
+
       <section className="max-w-5xl mx-auto px-6 py-10 text-lg">
         <h1 className="text-3xl font-semibold text-eipp-primary mb-6">
           About Us
@@ -148,5 +154,6 @@ export default function About() {
         </p>
       </section>
     </main>
+    </MotionDiv>
   );
 }

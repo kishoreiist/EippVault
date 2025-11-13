@@ -20,7 +20,6 @@ export default function ContactUs() {
       <div className="w-full flex justify-center py-14 bg-white">
         <div className="max-w-6xl w-full grid md:grid-cols-2 min-h-[650px] gap-6 px-4 md:px-0">
           
-          {/* LEFT — CONTACT FORM (animated) */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -42,7 +41,6 @@ export default function ContactUs() {
               </a>
             </p>
 
-            {/* Success & Error Messages */}
             {successMessage && (
               <div className="bg-green-100 text-green-800 text-sm px-4 py-2 rounded-md mt-6 border border-green-300">
                 {successMessage}
@@ -54,7 +52,6 @@ export default function ContactUs() {
               </div>
             )}
 
-            {/* FORM */}
             <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-6">
               <div className="grid grid-cols-2 gap-6">
                 <div>
@@ -152,7 +149,7 @@ export default function ContactUs() {
                 )}
               </div>
 
-              {/* ✅ Animated Submit Button */}
+
               <MotionButton
                 type="submit"
                 disabled={isPending}
@@ -174,7 +171,6 @@ export default function ContactUs() {
             </form>
           </motion.div>
 
-          {/* RIGHT — IMAGE (Floating animation) */}
           <motion.div
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}

@@ -44,7 +44,6 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    // --- Setup mail transporter ---
     const transporter = nodemailer.createTransport({
       host: "smtp.socketlabs.com",
       port: 587,
@@ -55,12 +54,11 @@ export async function POST(req: Request) {
       },
     });
 
-    // --- Local logging setup ---
     const logsDir = path.join(process.cwd(), "contact_logs");
     const logFile = path.join(logsDir, "contacts.json");
 
     try {
-      // Ensure directory exists
+
       await access(logsDir, constants.F_OK).catch(async () => {
         await mkdir(logsDir, { recursive: true });
       });
@@ -68,7 +66,6 @@ export async function POST(req: Request) {
       console.error("❌ Failed to create log directory:", dirErr);
     }
 
-    // --- Create log entry ---
     const logEntry = {
       firstName,
       lastName,
@@ -86,7 +83,6 @@ export async function POST(req: Request) {
       console.error("❌ Error writing log file:", writeErr);
     }
 
-    // --- Send email notification ---
     await transporter.sendMail({
       from: "info@eippvault.com",
       to: "info@eippvault.com",

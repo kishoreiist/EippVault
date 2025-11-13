@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface Message {
   sender: "bot" | "user";
@@ -47,6 +47,14 @@ export function useChatbot() {
       console.error("❌ Network or server error:", err);
     }
   };
+
+   const bottomRef = useRef<HTMLDivElement | null>(null);
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+  
 
 
   useEffect(() => {
