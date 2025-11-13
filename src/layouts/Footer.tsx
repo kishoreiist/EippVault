@@ -18,7 +18,6 @@ export default function Footer() {
     >
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         
-        {/* COLUMN 1 */}
         <MotionDiv
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -28,12 +27,10 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">EIPP Vault</h3>
           <p className="text-sm mb-2">2/13 Muthumariamman Kovil Street</p>
           <p className="text-sm mb-2">West Tambaram, Chennai, India.</p>
-          {/* Phone optional */}
           {/* <p className="text-sm mb-2">📞 +91 9876543210</p> */}
           <p className="text-sm">✉️ info@eippvault.com</p>
         </MotionDiv>
 
-        {/* COLUMN 2 */}
         <MotionDiv
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -66,7 +63,6 @@ export default function Footer() {
           </ul>
         </MotionDiv>
 
-        {/* COLUMN 3 */}
         <MotionDiv
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -98,7 +94,6 @@ export default function Footer() {
         </MotionDiv>
       </div>
 
-      {/* COPYRIGHT */}
       <MotionDiv
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}

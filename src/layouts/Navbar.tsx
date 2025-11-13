@@ -12,20 +12,20 @@ import {
 import { menus } from "../constant/NavLinks";
 
 export default function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null); // Desktop hover
-  const [isMobileOpen, setIsMobileOpen] = useState(false); // Mobile menu visibility
-  const [expandMenu, setExpandMenu] = useState<string | null>(null); // Mobile submenu toggle
+  const [activeMenu, setActiveMenu] = useState<string | null>(null); 
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [expandMenu, setExpandMenu] = useState<string | null>(null); 
 
   return (
     <>
-      {/* NAVBAR MAIN */}
+
       <MotionDiv
         initial={{ y: -50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="flex justify-between items-center px-6 py-3 bg-white shadow-md sticky top-0 z-50 backdrop-blur-md bg-opacity-90"
       >
-        {/* LOGO */}
+
         <Link href="/" className="flex items-center space-x-2">
           <MotionDiv whileHover={{ scale: 1.1 }} transition={{ duration: 0.25 }}>
             <Image
@@ -38,7 +38,7 @@ export default function Navbar() {
           </MotionDiv>
         </Link>
 
-        {/* DESKTOP MENU */}
+
         <nav className="hidden md:flex space-x-8 text-sm font-medium relative">
           {menus.map((menu) => (
             <div
@@ -56,7 +56,7 @@ export default function Navbar() {
                 </Link>
               </MotionDiv>
 
-              {/* DESKTOP SUBMENU */}
+   
               {menu.submenu && activeMenu === menu.name && (
                 <MotionDiv
                   initial={{ opacity: 0, y: -10 }}
@@ -80,7 +80,6 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* RIGHT BUTTON (DESKTOP) */}
         <div className="hidden md:block">
           <MotionButton
             whileHover={{ scale: 1.05 }}
@@ -96,7 +95,6 @@ export default function Navbar() {
           </MotionButton>
         </div>
 
-        {/* MOBILE MENU BUTTON */}
         <button
           className="md:hidden"
           onClick={() => setIsMobileOpen(true)}
@@ -105,7 +103,6 @@ export default function Navbar() {
         </button>
       </MotionDiv>
 
-      {/* MOBILE MENU OVERLAY */}
       <MotionAnimatePresence>
         {isMobileOpen && (
           <MotionDiv
@@ -116,7 +113,7 @@ export default function Navbar() {
             className="fixed inset-0 bg-black/40 backdrop-blur-md z-[999]"
             onClick={() => setIsMobileOpen(false)}
           >
-            {/* MOBILE SIDEBAR */}
+
             <MotionDiv
               initial={{ x: -300 }}
               animate={{ x: 0 }}
@@ -125,7 +122,7 @@ export default function Navbar() {
               className="absolute top-0 left-0 w-72 h-full bg-white shadow-xl p-6 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* HEADER */}
+           
               <div className="flex items-center justify-between mb-6">
                 <Image
                   src="/logo.png"
@@ -138,7 +135,6 @@ export default function Navbar() {
                 </button>
               </div>
 
-              {/* MOBILE NAV LINKS */}
               <nav className="flex flex-col space-y-4">
                 {menus.map((menu) => (
                   <div key={menu.name} className="border-b border-gray-200 pb-2">
@@ -161,7 +157,6 @@ export default function Navbar() {
                       )}
                     </button>
 
-                    {/* SUBMENU */}
                     {menu.submenu && expandMenu === menu.name && (
                       <MotionDiv
                         initial={{ opacity: 0, y: -10 }}
@@ -185,7 +180,6 @@ export default function Navbar() {
                 ))}
               </nav>
 
-              {/* CTA BUTTON */}
               <button
                 onClick={() => {
                   setIsMobileOpen(false);
