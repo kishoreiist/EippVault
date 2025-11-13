@@ -12,7 +12,8 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative bg-linear-to-l from-eipp-primary to-eipp-secondary text-white py-10 xl:py-48 px-6 text-center overflow-hidden"
+      className="relative bg-linear-to-l from-eipp-primary to-eipp-secondary text-white 
+      py-16 md:py-28 xl:py-48 px-4 md:px-6 text-center overflow-hidden"
     >
       <MotionDiv
         initial={{ opacity: 0.2, scale: 0.8 }}
@@ -21,7 +22,8 @@ export default function Hero() {
         className="absolute inset-0 bg-gradient-radial from-white/10 via-transparent to-transparent blur-3xl"
       />
 
-      <div className="max-w-5xl mx-auto justify-center items-center relative z-10">
+      <div className="max-w-5xl mx-auto relative z-10">
+
         <MotionDiv
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,6 +35,7 @@ export default function Hero() {
               alt="EIPP Vault Logo"
               width={120}
               height={120}
+              className="w-24 md:w-28"
             />
           </Link>
         </MotionDiv>
@@ -42,7 +45,10 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
         >
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-4 drop-shadow-lg pb-4">
+          <h1 className="
+            text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+            font-bold leading-tight mb-4 drop-shadow-lg pb-4
+          ">
             Safeguarding Your Files,{" "}
             <MotionSpan
               initial={{ opacity: 0 }}
@@ -54,16 +60,20 @@ export default function Hero() {
             </MotionSpan>
           </h1>
         </MotionDiv>
+
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <p className="text-lg text-blue-50 mb-10 max-w-4xl mx-auto">
+          <p className="
+            text-sm sm:text-base md:text-lg 
+            text-blue-50 mb-8 md:mb-10 max-w-3xl mx-auto
+          ">
             EIPP Vault is your secure, cloud-based document management solution
-            <br />
-            combining security, efficiency, and ease of access for every team.
-            <br />
+            <br className="hidden sm:block" />
+            combining security, efficiency, and ease of access.
+            <br className="hidden sm:block" />
             Smart, Effortless Document Management.
           </p>
         </MotionDiv>
@@ -72,7 +82,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="flex justify-center gap-4 items-center"
+          className="flex justify-center"
         >
           <MotionButton
             whileHover={{
@@ -81,7 +91,8 @@ export default function Hero() {
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="bg-white text-eipp-secondary font-semibold px-6 py-3 rounded-lg shadow hover:bg-blue-100 transition"
+            className="bg-white text-eipp-secondary font-semibold px-6 py-3 rounded-lg shadow 
+              hover:bg-blue-100 transition"
             onClick={() =>
               document
                 .getElementById("contact-us")
@@ -97,7 +108,8 @@ export default function Hero() {
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: [0.1, 0.25, 0.1], y: [60, 40, 60] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute bottom-10 left-10 text-[6rem] text-white/20 select-none"
+        className="absolute bottom-6 left-4 sm:left-10 
+        text-[3rem] sm:text-[5rem] lg:text-[6rem] text-white/20 select-none"
       >
         ❖
       </MotionSpan>
@@ -106,7 +118,8 @@ export default function Hero() {
         initial={{ opacity: 0, y: -40 }}
         animate={{ opacity: [0.1, 0.25, 0.1], y: [-40, -20, -40] }}
         transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-16 right-16 text-[8rem] text-white/15 select-none"
+        className="absolute top-6 right-4 sm:right-10 
+        text-[4rem] sm:text-[6rem] lg:text-[8rem] text-white/15 select-none"
       >
         ✦
       </MotionSpan>

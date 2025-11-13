@@ -2,9 +2,13 @@
 
 import { BotMessageSquare, X } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useChatbot } from "@/src/hooks/useChatbot";
-import { MotionAnimatePresence, MotionButton, MotionDiv } from "@/src/motion/motion/framer_motion";
+import {
+  MotionAnimatePresence,
+  MotionButton,
+  MotionDiv,
+} from "@/src/motion/motion/framer_motion";
 
 export default function ChatBot() {
   const {
@@ -19,6 +23,14 @@ export default function ChatBot() {
   const [activeTab, setActiveTab] = useState<"chat" | "whatsapp">("chat");
 
   const whatsappNumber = "8056102822";
+
+
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [messages, isOpen]);
 
   return (
     <div>
@@ -43,6 +55,7 @@ export default function ChatBot() {
           </MotionButton>
         </MotionDiv>
       )}
+
       <MotionAnimatePresence>
         {isOpen && (
           <MotionDiv
@@ -51,9 +64,10 @@ export default function ChatBot() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 40, scale: 0.9 }}
             transition={{ duration: 0.35 }}
-            className="fixed bottom-20 sm:bottom-4 right-4 sm:right-6 w-80 sm:w-96 bg-white shadow-2xl rounded-lg border border-gray-300 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-20 sm:bottom-4 right-4 sm:right-6 
+            w-80 sm:w-96 bg-white shadow-2xl rounded-lg border border-gray-300 
+            z-50 flex flex-col overflow-hidden"
           >
-
             <div className="flex items-center justify-between bg-eipp-primary text-white px-4 py-2">
               <div className="flex items-center space-x-2">
                 <div className="bg-white p-1 rounded-full">
@@ -61,32 +75,34 @@ export default function ChatBot() {
                 </div>
                 <div>
                   <h3 className="text-sm font-semibold">EIPP Vault</h3>
-                  <p className="text-xs opacity-80">
-                    We’ll reply as soon as we can
-                  </p>
+                  <p className="text-xs opacity-80">We’ll reply as soon as we can</p>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                aria-label="Close chat"
-                title="Close chat"
-              >
+
+              <button onClick={() => setIsOpen(false)}>
                 <X className="w-4 h-4" />
               </button>
             </div>
+
             {activeTab === "chat" && (
               <div className="flex flex-col flex-1">
-                <div className="h-60 overflow-y-auto p-3 space-y-2 bg-gray-50 text-sm">
+                <div
+                  ref={scrollRef}
+                  className="h-60 overflow-y-auto p-3 space-y-2 bg-gray-50 text-sm scrollbar-thin scrollbar-thumb-gray-300"
+                >
                   <MotionAnimatePresence>
                     {messages.map((msg, idx) => (
                       <MotionDiv
                         key={idx}
-                        initial={{ opacity: 0, x: msg.sender === "user" ? 40 : -40 }}
+                        initial={{
+                          opacity: 0,
+                          x: msg.sender === "user" ? 40 : -40,
+                        }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.25 }}
-                        className={`px-3 py-2 rounded-2xl max-w-[75%] leading-snug ${
+                        className={`px-3 py-2 rounded-2xl max-w-[75%] leading-snug break-words ${
                           msg.sender === "user"
-                            ? "bg-eipp-secondary text-white ml-auto shadow-md font-medium"
+                            ? "bg-eipp-secondary text-white ml-auto shadow-md"
                             : "bg-gray-200 text-gray-900 mr-auto shadow-sm"
                         }`}
                       >
@@ -118,8 +134,6 @@ export default function ChatBot() {
                 </div>
               </div>
             )}
-
-
             {activeTab === "whatsapp" && (
               <MotionDiv
                 initial={{ opacity: 0 }}
@@ -129,23 +143,24 @@ export default function ChatBot() {
                 <p className="text-gray-700 text-sm text-center">
                   We’d love to hear from you on WhatsApp.
                 </p>
+
                 <a
                   href={`https://wa.me/${whatsappNumber}?text=Hello%20EIPP%20Vault%20Support!`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold px-4 py-2 rounded-md flex items-center space-x-2"
+                  className="bg-green-500 hover:bg-green-600 text-white text-sm font-semibold 
+                  px-4 py-2 rounded-md flex items-center space-x-2"
                 >
                   <FaWhatsapp className="w-5 h-5" />
                   <span>Open WhatsApp</span>
                 </a>
               </MotionDiv>
             )}
-
             <div className="flex justify-center items-center gap-4 p-3 bg-white border-t border-gray-200">
               <MotionButton
                 onClick={() => setActiveTab("chat")}
                 whileTap={{ scale: 0.85 }}
-                className={`flex items-center justify-center w-10 h-10 rounded-lg transition ${
+                className={`flex items-center justify-center w-10 h-10 rounded-lg ${
                   activeTab === "chat"
                     ? "bg-gray-900 text-white"
                     : "bg-gray-100 text-gray-600"
@@ -157,7 +172,7 @@ export default function ChatBot() {
               <MotionButton
                 onClick={() => setActiveTab("whatsapp")}
                 whileTap={{ scale: 0.85 }}
-                className={`flex items-center justify-center w-10 h-10 rounded-lg transition ${
+                className={`flex items-center justify-center w-10 h-10 rounded-lg ${
                   activeTab === "whatsapp"
                     ? "bg-green-500 text-white"
                     : "bg-gray-100 text-green-600"

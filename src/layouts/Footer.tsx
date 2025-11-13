@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import Link from "next/link";
-import { FaLinkedin, FaFacebook} from "react-icons/fa";
+import { FaLinkedin, FaFacebook } from "react-icons/fa";
 import { MotionDiv, MotionSpan } from "@/src/motion/motion/framer_motion";
 
 export default function Footer() {
@@ -14,10 +14,11 @@ export default function Footer() {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       viewport={{ once: true }}
-      className="bg-eipp-primary text-white py-10 px-6 overflow-hidden"
+      className="bg-eipp-primary text-white py-12 px-6 sm:px-10 overflow-hidden"
     >
-      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
         
+        {/* COLUMN 1 */}
         <MotionDiv
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -27,11 +28,12 @@ export default function Footer() {
           <h3 className="text-xl font-semibold mb-4">EIPP Vault</h3>
           <p className="text-sm mb-2">2/13 Muthumariamman Kovil Street</p>
           <p className="text-sm mb-2">West Tambaram, Chennai, India.</p>
+          {/* Phone optional */}
           {/* <p className="text-sm mb-2">📞 +91 9876543210</p> */}
           <p className="text-sm">✉️ info@eippvault.com</p>
         </MotionDiv>
 
-      
+        {/* COLUMN 2 */}
         <MotionDiv
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -39,7 +41,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-sm">
+          <ul className="space-y-3 text-sm">
             {[
               { href: "#home", label: "Home" },
               { href: "#about", label: "About Us" },
@@ -63,6 +65,8 @@ export default function Footer() {
             ))}
           </ul>
         </MotionDiv>
+
+        {/* COLUMN 3 */}
         <MotionDiv
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -70,7 +74,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
-          <div className="flex space-x-4 text-2xl">
+          <div className="flex gap-6 text-2xl">
             {[
               { href: "https://www.linkedin.com", icon: <FaLinkedin /> },
               { href: "https://www.facebook.com", icon: <FaFacebook /> },
@@ -94,12 +98,13 @@ export default function Footer() {
         </MotionDiv>
       </div>
 
+      {/* COPYRIGHT */}
       <MotionDiv
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 0.3 }}
         viewport={{ once: true }}
-        className="text-center text-sm text-blue-50 mt-10 border-t border-blue-200 pt-4"
+        className="text-center text-sm text-blue-50 mt-12 border-t border-blue-200 pt-4"
       >
         © {currentYear} EIPP Vault. All rights reserved.
       </MotionDiv>
