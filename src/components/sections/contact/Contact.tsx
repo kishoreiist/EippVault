@@ -15,18 +15,29 @@ export default function ContactUs() {
   } = form;
 
   return (
-    <section id="contact-us">
-      <div className="w-full flex justify-center py-14 bg-white">
-        <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-2 min-h-[650px] gap-10 px-4">
+    <section id="contact-us" className="w-full overflow-x-hidden">
+      <div className="w-full flex justify-center py-12 sm:py-14 bg-white">
+        <div
+          className="
+            max-w-6xl w-full 
+            grid grid-cols-1 md:grid-cols-2 
+            gap-10 md:gap-14 
+            px-4 sm:px-6 lg:px-8
+          "
+        >
 
           <MotionDiv
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true }}
-            className="px-4 md:px-10 py-10 flex flex-col justify-center"
+            className="
+              px-2 sm:px-4 md:px-8 
+              py-4 sm:py-10 
+              flex flex-col justify-center
+            "
           >
-            <h1 className="text-[26px] md:text-[28px] font-semibold text-eipp-primary leading-tight">
+            <h1 className="text-[24px] sm:text-[26px] md:text-[28px] font-semibold text-eipp-primary leading-tight">
               Let’s level up your brand, <br /> together
             </h1>
 
@@ -52,8 +63,12 @@ export default function ContactUs() {
               </div>
             )}
 
-            <form onSubmit={handleSubmit(onSubmit)} className="mt-10 space-y-6">
 
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              className="mt-8 sm:mt-10 space-y-6"
+            >
+    
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="text-sm">First name *</label>
@@ -63,7 +78,9 @@ export default function ContactUs() {
                     className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                   />
                   {errors.firstName && (
-                    <p className="text-red-600 text-xs mt-1">{errors.firstName.message}</p>
+                    <p className="text-red-600 text-xs mt-1">
+                      {errors.firstName.message}
+                    </p>
                   )}
                 </div>
 
@@ -75,7 +92,9 @@ export default function ContactUs() {
                     className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                   />
                   {errors.lastName && (
-                    <p className="text-red-600 text-xs mt-1">{errors.lastName.message}</p>
+                    <p className="text-red-600 text-xs mt-1">
+                      {errors.lastName.message}
+                    </p>
                   )}
                 </div>
               </div>
@@ -83,15 +102,20 @@ export default function ContactUs() {
               <div>
                 <label className="text-sm">Company Name *</label>
                 <input
-                  {...register("companyName", { required: "Company name is required" })}
+                  {...register("companyName", {
+                    required: "Company name is required",
+                  })}
                   disabled={isPending}
                   className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
                 {errors.companyName && (
-                  <p className="text-red-600 text-xs mt-1">{errors.companyName.message}</p>
+                  <p className="text-red-600 text-xs mt-1">
+                    {errors.companyName.message}
+                  </p>
                 )}
               </div>
 
+  
               <div>
                 <label className="text-sm">Email *</label>
                 <input
@@ -101,7 +125,9 @@ export default function ContactUs() {
                   className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
                 {errors.email && (
-                  <p className="text-red-600 text-xs mt-1">{errors.email.message}</p>
+                  <p className="text-red-600 text-xs mt-1">
+                    {errors.email.message}
+                  </p>
                 )}
               </div>
 
@@ -113,29 +139,41 @@ export default function ContactUs() {
                   className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
                 {errors.phone && (
-                  <p className="text-red-600 text-xs mt-1">{errors.phone.message}</p>
+                  <p className="text-red-600 text-xs mt-1">
+                    {errors.phone.message}
+                  </p>
                 )}
               </div>
 
+  
               <div>
                 <label className="text-sm">Message *</label>
                 <textarea
                   {...register("message")}
                   rows={4}
                   disabled={isPending}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50 resize-none"
                 />
                 {errors.message && (
-                  <p className="text-red-600 text-xs mt-1">{errors.message.message}</p>
+                  <p className="text-red-600 text-xs mt-1">
+                    {errors.message.message}
+                  </p>
                 )}
               </div>
 
+     
               <MotionButton
                 type="submit"
                 disabled={isPending}
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full py-3 text-sm font-medium rounded-md bg-eipp-secondary hover:bg-eipp-primary text-white transition-all flex justify-center items-center gap-2 disabled:opacity-70"
+                className="
+                  w-full py-3 text-sm font-medium rounded-md 
+                  bg-eipp-secondary hover:bg-eipp-primary 
+                  text-white transition-all 
+                  flex justify-center items-center gap-2 
+                  disabled:opacity-70
+                "
               >
                 {isPending ? (
                   <>
@@ -149,23 +187,28 @@ export default function ContactUs() {
             </form>
           </MotionDiv>
 
+  
           <MotionDiv
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, ease: "easeOut" }}
             viewport={{ once: true }}
             animate={{ y: [0, -12, 0] }}
-            className="flex items-center justify-center md:ml-6"
+            className="flex items-center justify-center md:ml-6 lg:ml-10"
           >
             <Image
               src="/hero.png"
               width={500}
               height={400}
               alt="Business"
-              className="w-full max-w-sm md:max-w-md h-auto object-contain"
+              className="
+                w-full 
+                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg 
+                h-auto 
+                object-contain
+              "
             />
           </MotionDiv>
-
         </div>
       </div>
     </section>

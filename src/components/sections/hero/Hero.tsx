@@ -40,26 +40,36 @@ export default function Hero() {
           </Link>
         </MotionDiv>
 
-        <MotionDiv
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+       <MotionDiv
+  initial={{ opacity: 0, scale: 0.2, y: 0 }}
+  animate={{ opacity: 1, scale: 1, y: 0 }}
+  transition={{ duration: 1.2, ease: "easeOut" }}
+>
+  <h1
+    className="
+      text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
+      font-bold leading-tight mb-4 drop-shadow-lg pb-4 text-white
+    "
+  >
+    {["Safeguarding Your Files,", "Simplifying Your Workflow."]
+      .map((word, i) => (
+        <MotionSpan
+          key={i}
+          initial={{ opacity: 0, scale: 0.1, x: 0, y: 0 }}
+          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+          transition={{
+            delay: 0.3 + i * 0.3,
+            duration: 0.8,
+            ease: "easeOut",
+          }}
+          className="block"
         >
-          <h1 className="
-            text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-            font-bold leading-tight mb-4 drop-shadow-lg pb-4
-          ">
-            Safeguarding Your Files,{" "}
-            <MotionSpan
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.1 }}
-              className="text-white"
-            >
-              Simplifying Your Workflow.
-            </MotionSpan>
-          </h1>
-        </MotionDiv>
+          {word}
+        </MotionSpan>
+      ))}
+  </h1>
+</MotionDiv>
+
 
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}

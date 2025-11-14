@@ -12,9 +12,9 @@ import {
 import { menus } from "../constant/NavLinks";
 
 export default function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null); 
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
-  const [expandMenu, setExpandMenu] = useState<string | null>(null); 
+  const [expandMenu, setExpandMenu] = useState<string | null>(null);
 
   return (
     <>
@@ -38,7 +38,7 @@ export default function Navbar() {
           </MotionDiv>
         </Link>
 
-
+  
         <nav className="hidden md:flex space-x-8 text-sm font-medium relative">
           {menus.map((menu) => (
             <div
@@ -56,7 +56,6 @@ export default function Navbar() {
                 </Link>
               </MotionDiv>
 
-   
               {menu.submenu && activeMenu === menu.name && (
                 <MotionDiv
                   initial={{ opacity: 0, y: -10 }}
@@ -95,10 +94,7 @@ export default function Navbar() {
           </MotionButton>
         </div>
 
-        <button
-          className="md:hidden"
-          onClick={() => setIsMobileOpen(true)}
-        >
+        <button className="md:hidden" onClick={() => setIsMobileOpen(true)}>
           <Menu className="w-7 h-7 text-gray-700" />
         </button>
       </MotionDiv>
@@ -113,7 +109,6 @@ export default function Navbar() {
             className="fixed inset-0 bg-black/40 backdrop-blur-md z-[999]"
             onClick={() => setIsMobileOpen(false)}
           >
-
             <MotionDiv
               initial={{ x: -300 }}
               animate={{ x: 0 }}
@@ -122,14 +117,9 @@ export default function Navbar() {
               className="absolute top-0 left-0 w-72 h-full bg-white shadow-xl p-6 overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-           
+
               <div className="flex items-center justify-between mb-6">
-                <Image
-                  src="/logo.png"
-                  width={70}
-                  height={70}
-                  alt="Logo"
-                />
+                <Image src="/logo.png" width={70} height={70} alt="Logo" />
                 <button onClick={() => setIsMobileOpen(false)}>
                   <X className="w-6 h-6 text-gray-700" />
                 </button>
@@ -140,20 +130,32 @@ export default function Navbar() {
                   <div key={menu.name} className="border-b border-gray-200 pb-2">
                     <button
                       className="w-full flex justify-between items-center text-left text-gray-900 font-semibold text-lg"
-                      onClick={() =>
-                        menu.submenu
-                          ? setExpandMenu(
-                              expandMenu === menu.name ? null : menu.name
-                            )
-                          : (setIsMobileOpen(false),
-                            document
-                              .getElementById(menu.href.replace("#", ""))
-                              ?.scrollIntoView({ behavior: "smooth" }))
-                      }
+                      onClick={() => {
+                        if (menu.submenu) {
+                          setExpandMenu(
+                            expandMenu === menu.name ? null : menu.name
+                          );
+                        } else {
+                    
+                          if (menu.href === "/") {
+                            window.location.href = "/";
+                            setIsMobileOpen(false);
+                            return;
+                          }
+
+                          const id = menu.href.replace("/#", "").replace("#", "");
+                          const target = document.getElementById(id);
+
+                          if (target) {
+                            target.scrollIntoView({ behavior: "smooth" });
+                            setTimeout(() => setIsMobileOpen(false), 300);
+                          }
+                        }
+                      }}
                     >
                       {menu.name}
                       {menu.submenu && (
-                        <span>{expandMenu === menu.name ? "^" : ">"}</span>
+                        <span>{expandMenu === menu.name ? "▲" : "▶"}</span>
                       )}
                     </button>
 
@@ -168,8 +170,8 @@ export default function Navbar() {
                           <Link
                             key={sub.name}
                             href={sub.href}
-                            onClick={() => setIsMobileOpen(false)}
                             className="block text-sm text-gray-600"
+                            onClick={() => setIsMobileOpen(false)}
                           >
                             {sub.name}
                           </Link>

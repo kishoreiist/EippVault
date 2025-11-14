@@ -9,14 +9,19 @@ export default function About() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.9, ease: "easeOut" }}
+      className="w-full"
     >
-      <main id="about" className="w-full bg-bg text-text leading-relaxed">
-        
-        <section className="max-w-5xl mx-auto px-6 py-10 text-lg">
-          <h1 className="text-3xl font-semibold text-eipp-primary mb-6">
+      <main
+        id="about"
+        className="w-full bg-bg text-text leading-relaxed overflow-x-hidden"
+      >
+   
+        <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-10 text-base sm:text-lg">
+          <h1 className="text-2xl sm:text-3xl font-semibold text-eipp-primary mb-6">
             About Us
           </h1>
-          <p>
+
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
             EIPP Vault helps businesses move from manual paperwork to organized,
             secure, and digital workflows. We provide flexible and user-friendly
             solutions that make daily work faster and more efficient.
@@ -26,12 +31,20 @@ export default function About() {
           </p>
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 py-8 grid md:grid-cols-2 gap-10">
+        <section
+          className="
+            max-w-5xl mx-auto 
+            px-5 sm:px-6 md:px-8 py-8 
+            grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14
+          "
+        >
+    
           <div>
-            <h2 className="text-xl font-semibold mb-3 text-eipp-primary">
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-eipp-primary">
               Who We Are
             </h2>
-            <p>
+
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed">
               We are a solution-focused team committed to improving how
               organizations control, store, and share their information.
               <br />
@@ -42,8 +55,9 @@ export default function About() {
             </p>
           </div>
 
+      
           <div>
-            <h2 className="text-xl font-semibold text-eipp-primary mb-3">
+            <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
               What We Do
             </h2>
 
@@ -52,7 +66,7 @@ export default function About() {
               whileInView="visible"
               viewport={{ once: true }}
               transition={{ staggerChildren: 0.2 }}
-              className="ml-6 space-y-2"
+              className="ml-3 sm:ml-6 space-y-2"
             >
               {[
                 "Document Management Systems (DMS)",
@@ -70,27 +84,34 @@ export default function About() {
                   className="flex items-start space-x-2"
                 >
                   <MotionSpan
-                    className="text-eipp-primary text-lg leading-tight"
+                    className="text-eipp-primary text-lg"
                     initial={{ scale: 0 }}
                     whileInView={{ scale: 1 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 300,
+                      damping: 15,
+                    }}
                   >
                     •
                   </MotionSpan>
-                  <span>{item}</span>
+                  <span className="text-sm sm:text-base md:text-lg">
+                    {item}
+                  </span>
                 </MotionDiv>
               ))}
             </MotionDiv>
 
-            <p className="mt-4">
+            <p className="mt-4 text-sm sm:text-base md:text-lg">
               Our solutions help companies reduce paperwork, avoid errors, and
               work smarter every day.
             </p>
           </div>
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 py-10">
-          <h2 className="text-xl font-semibold text-eipp-primary mb-3">
+ 
+        <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-10">
+          <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
             Industries We Support
           </h2>
 
@@ -99,7 +120,7 @@ export default function About() {
             whileInView="visible"
             viewport={{ once: true }}
             transition={{ staggerChildren: 0.15 }}
-            className="ml-6 space-y-2"
+            className="ml-3 sm:ml-6 space-y-2"
           >
             {[
               "Corporates and Business Offices",
@@ -119,42 +140,51 @@ export default function About() {
                 className="flex items-start space-x-2"
               >
                 <MotionSpan
-                  className="text-eipp-primary text-lg leading-tight"
+                  className="text-eipp-primary text-lg"
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 15 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 15,
+                  }}
                 >
                   •
                 </MotionSpan>
-                <span>{item}</span>
+
+                <span className="text-sm sm:text-base md:text-lg">
+                  {item}
+                </span>
               </MotionDiv>
             ))}
           </MotionDiv>
 
-          <p className="mt-4">
+          <p className="mt-4 text-sm sm:text-base md:text-lg">
             No matter the industry — if your work involves documents, we make it
             simpler.
           </p>
         </section>
 
-        <section className="max-w-5xl mx-auto px-6 py-8">
-          <h2 className="text-xl font-semibold text-eipp-primary mb-3">
+  
+        <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
             Our Mission
           </h2>
-          <p>
+
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
             To simplify everyday business operations by transforming paperwork
             into smart, secure, and seamless digital workflows.
           </p>
 
-          <h2 className="text-xl font-semibold text-eipp-primary mt-8 mb-3">
+          <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mt-8 mb-3">
             Our Vision
           </h2>
-          <p>
-            To be a trusted partner for organizations looking to work faster, stay
-            organized, and operate with confidence in a digital world.
+
+          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+            To be a trusted partner for organizations looking to work faster,
+            stay organized, and operate with confidence in a digital world.
           </p>
         </section>
-
       </main>
     </MotionDiv>
   );

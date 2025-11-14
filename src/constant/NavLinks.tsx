@@ -1,9 +1,11 @@
 export const menus = [
   { name: "Home", href: "/" },
+
   { name: "About Us", href: "/#about" },
+
   {
     name: "Solutions",
-    href: "#solutions",
+    href: "/#solutions",
     submenu: [
       {
         name: "Document Scanning & Indexing",
@@ -22,14 +24,14 @@ export const menus = [
 
   {
     name: "Products",
-    href: "#products",
+    href: "/#products",
     submenu: [
       {
         name: "Cloud-Based DMS",
         href: "/products/cloud_based_dms",
       },
       {
-        name: " On-Premises DMS",
+        name: "On-Premises DMS",
         href: "/products/on_premises_dms",
       },
       {
@@ -40,6 +42,8 @@ export const menus = [
   },
 
   { name: "Pricing", href: "/#pricing" },
+
   { name: "Contact Us", href: "/#contact-us" },
-  { name: "Certifications",href:"/#certifications"}
+
+  { name: "Certifications", href: "/#certifications" },
 ];

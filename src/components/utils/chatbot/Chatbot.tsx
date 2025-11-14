@@ -22,8 +22,7 @@ export default function ChatBot() {
 
   const [activeTab, setActiveTab] = useState<"chat" | "whatsapp">("chat");
 
-  const whatsappNumber = "8056102822";
-
+  const whatsappNumber = "919382140303";
 
   const scrollRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -46,9 +45,8 @@ export default function ChatBot() {
             aria-label="Open chat"
             title="Open chat"
             className="relative bg-green-600 text-white p-4 rounded-full shadow-lg"
-            animate={{ y: [0, -6, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             whileHover={{ scale: 1.15 }}
+            whileTap={{ scale: 0.95 }}
           >
             <BotMessageSquare className="w-6 h-6" />
             <span className="absolute inset-0 rounded-full bg-eipp-primary blur-xl opacity-30 -z-10"></span>
@@ -134,6 +132,7 @@ export default function ChatBot() {
                 </div>
               </div>
             )}
+
             {activeTab === "whatsapp" && (
               <MotionDiv
                 initial={{ opacity: 0 }}
@@ -156,6 +155,7 @@ export default function ChatBot() {
                 </a>
               </MotionDiv>
             )}
+
             <div className="flex justify-center items-center gap-4 p-3 bg-white border-t border-gray-200">
               <MotionButton
                 onClick={() => setActiveTab("chat")}
