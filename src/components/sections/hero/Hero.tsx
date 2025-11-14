@@ -31,7 +31,7 @@ export default function Hero() {
         >
           <Link href="/" className="flex items-center justify-center pb-4">
             <Image
-              src="/logo.png"
+              src="/logo6.png"
               alt="EIPP Vault Logo"
               width={120}
               height={120}

@@ -27,6 +27,32 @@ export default function ContactUs() {
         >
 
           <MotionDiv
+            initial={{ opacity: 0, x: 60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.9, ease: "easeOut" }}
+            viewport={{ once: true }}
+            animate={{ y: [0, -12, 0] }}
+            className="
+              flex items-center justify-center 
+              order-1 md:order-2   /* ⭐ Mobile: first | Desktop: second */
+              md:ml-6 lg:ml-10
+            "
+          >
+            <Image
+              src="/hero.png"
+              width={500}
+              height={400}
+              alt="Business"
+              className="
+                w-full 
+                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg 
+                h-auto 
+                object-contain
+              "
+            />
+          </MotionDiv>
+
+          <MotionDiv
             initial={{ opacity: 0, x: -60 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
@@ -35,6 +61,7 @@ export default function ContactUs() {
               px-2 sm:px-4 md:px-8 
               py-4 sm:py-10 
               flex flex-col justify-center
+              order-2 md:order-1   /* ⭐ Mobile: after image | Desktop: first */
             "
           >
             <h1 className="text-[24px] sm:text-[26px] md:text-[28px] font-semibold text-eipp-primary leading-tight">
@@ -63,12 +90,10 @@ export default function ContactUs() {
               </div>
             )}
 
-
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="mt-8 sm:mt-10 space-y-6"
             >
-    
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
                   <label className="text-sm">First name *</label>
@@ -115,7 +140,6 @@ export default function ContactUs() {
                 )}
               </div>
 
-  
               <div>
                 <label className="text-sm">Email *</label>
                 <input
@@ -145,7 +169,6 @@ export default function ContactUs() {
                 )}
               </div>
 
-  
               <div>
                 <label className="text-sm">Message *</label>
                 <textarea
@@ -161,7 +184,6 @@ export default function ContactUs() {
                 )}
               </div>
 
-     
               <MotionButton
                 type="submit"
                 disabled={isPending}
@@ -185,29 +207,6 @@ export default function ContactUs() {
                 )}
               </MotionButton>
             </form>
-          </MotionDiv>
-
-  
-          <MotionDiv
-            initial={{ opacity: 0, x: 60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.9, ease: "easeOut" }}
-            viewport={{ once: true }}
-            animate={{ y: [0, -12, 0] }}
-            className="flex items-center justify-center md:ml-6 lg:ml-10"
-          >
-            <Image
-              src="/hero.png"
-              width={500}
-              height={400}
-              alt="Business"
-              className="
-                w-full 
-                max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg 
-                h-auto 
-                object-contain
-              "
-            />
           </MotionDiv>
         </div>
       </div>
