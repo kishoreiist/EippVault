@@ -1,10 +1,10 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import {
   MotionButton,
   MotionDiv,
+  MotionImg,
   MotionSpan,
 } from "@/src/motion/motion/framer_motion";
 
@@ -23,63 +23,141 @@ export default function Hero() {
       />
 
       <div className="max-w-5xl mx-auto relative z-10">
-
         <MotionDiv
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          initial={{ opacity: 1 }}
+          animate={{ opacity: 1 }}
+          className="relative flex items-center justify-center w-full"
         >
-          <Link href="/" className="flex items-center justify-center pb-4">
-            <Image
-              src="/logo6.png"
-              alt="EIPP Vault Logo"
-              width={120}
-              height={120}
-              className="w-24 md:w-28"
-            />
-          </Link>
-        </MotionDiv>
+          <div className="absolute w-48 h-48 flex items-center justify-center pointer-events-none">
+            {[
+              "left",
+              "right",
+              "top",
+              "bottom",
+              "top-left",
+              "top-right",
+              "bottom-left",
+              "bottom-right",
+            ].map((dir, i) => (
+              <MotionImg
+                key={i}
+                src="/doc.jpg"
+                className="absolute w-10 h-10"
+                loading="lazy"
+                initial={{
+                  opacity: 0,
+                  scale: 0.8,
 
-       <MotionDiv
-  initial={{ opacity: 0, scale: 0.2, y: 0 }}
-  animate={{ opacity: 1, scale: 1, y: 0 }}
-  transition={{ duration: 1.2, ease: "easeOut" }}
->
-  <h1
-    className="
+    
+                  x:
+                    dir === "left"
+                      ? -150
+                      : dir === "right"
+                      ? 150
+                      : dir === "top-left"
+                      ? -120
+                      : dir === "bottom-left"
+                      ? -120
+                      : dir === "top-right"
+                      ? 120
+                      : dir === "bottom-right"
+                      ? 120
+                      : 0,
+
+                  y:
+                    dir === "top"
+                      ? -150
+                      : dir === "bottom"
+                      ? 150
+                      : dir === "top-left"
+                      ? -120
+                      : dir === "top-right"
+                      ? -120
+                      : dir === "bottom-left"
+                      ? 120
+                      : dir === "bottom-right"
+                      ? 120
+                      : 0,
+                }}
+                animate={{
+                  opacity: [0, 1, 0],
+                  x: 0,
+                  y: 0,
+                  scale: [0.8, 0.5, 0],
+                  rotate: [0, 15, -15], 
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: "easeOut",
+                  delay: i * 0.08,
+                }}
+              />
+            ))}
+          </div>
+
+          <MotionDiv
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              delay: 0.9,
+              duration: 0.4,
+              ease: "easeOut",
+            }}
+            className="z-10"
+          >
+            <Link href="/" className="flex items-center justify-center pb-4">
+              <Image
+                src="/logo6.png"
+                alt="EIPP Vault Logo"
+                width={120}
+                height={120}
+                className="w-24 md:w-28"
+              />
+            </Link>
+          </MotionDiv>
+        </MotionDiv>
+        <MotionDiv
+          initial={{ opacity: 0, scale: 0.2, y: 0 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+        >
+          <h1
+            className="
       text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
       font-bold leading-tight mb-4 drop-shadow-lg pb-4 text-white
     "
-  >
-    {["Safeguarding Your Files,", "Simplifying Your Workflow."]
-      .map((word, i) => (
-        <MotionSpan
-          key={i}
-          initial={{ opacity: 0, scale: 0.1, x: 0, y: 0 }}
-          animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
-          transition={{
-            delay: 0.3 + i * 0.3,
-            duration: 0.8,
-            ease: "easeOut",
-          }}
-          className="block"
-        >
-          {word}
-        </MotionSpan>
-      ))}
-  </h1>
-</MotionDiv>
-
+          >
+            {["Safeguarding Your Files,", "Simplifying Your Workflow."].map(
+              (word, i) => (
+                <MotionSpan
+                  key={i}
+                  initial={{ opacity: 0, scale: 0.1, x: 0, y: 0 }}
+                  animate={{ opacity: 1, scale: 1, x: 0, y: 0 }}
+                  transition={{
+                    delay: 0.3 + i * 0.3,
+                    duration: 0.8,
+                    ease: "easeOut",
+                  }}
+                  className="block"
+                >
+                  {word}
+                </MotionSpan>
+              )
+            )}
+          </h1>
+        </MotionDiv>
 
         <MotionDiv
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          <p className="
+          <p
+            className="
             text-sm sm:text-base md:text-lg 
             text-blue-50 mb-8 md:mb-10 max-w-3xl mx-auto
-          ">
+          "
+          >
             EIPP Vault is your secure, cloud-based document management solution
             <br className="hidden sm:block" />
             combining security, efficiency, and ease of access.

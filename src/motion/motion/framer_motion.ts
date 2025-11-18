@@ -23,3 +23,6 @@ export const MotionNav = motion.nav;
 export const MotionReorder = Reorder
 
 export const MotionAnimatePresence = AnimatePresence;
+
+export const MotionImg = motion.img;
+
