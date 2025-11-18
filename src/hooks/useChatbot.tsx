@@ -37,25 +37,18 @@ export function useChatbot() {
       });
 
       const result = await res.json();
-
-      if (result.success) {
-        console.log("✅ Contact details sent successfully:", data);
-      } else {
-        console.error("❌ Error sending contact details:", result.error);
-      }
+      if (!result.success) console.error("❌ API Error:", result.error);
     } catch (err) {
-      console.error("❌ Network or server error:", err);
+      console.error("❌ Network Error:", err);
     }
   };
 
-   const bottomRef = useRef<HTMLDivElement | null>(null);
-  useEffect(() => {
-    if (bottomRef.current) {
-      bottomRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messages]);
-  
 
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     const handleOpen = () => setIsOpen(true);
@@ -63,7 +56,6 @@ export function useChatbot() {
     return () => window.removeEventListener("openChatBox", handleOpen);
   }, []);
 
- 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
       setMessages([{ sender: "bot", text: "Hi 👋 Welcome to EIPP Vault!" }]);
@@ -78,60 +70,129 @@ export function useChatbot() {
     }
   }, [isOpen, messages.length]);
 
+  
+  const isName = (val: string) => /^[A-Za-z ]{2,30}$/.test(val);
+  const isEmail = (val: string) =>
+    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val.toLowerCase());
+  const isPhone = (val: string) =>
+    /^[0-9]{10,15}$/.test(val.replace(/[^0-9]/g, ""));
+
 
   const handleUserReply = async (text: string) => {
     if (!text.trim()) return;
 
-    setMessages((prev) => [...prev, { sender: "user", text }]);
+    const reply = text.trim();
+
+ 
+    setMessages((prev) => [...prev, { sender: "user", text: reply }]);
     setUserInput("");
 
+  
     if (step === 1) {
-      setFormData((prev) => ({ ...prev, firstName: text }));
+      if (!isName(reply)) {
+        return setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Please enter a valid first name " },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, firstName: reply }));
       setStep(2);
-      setTimeout(() => {
+      return setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           { sender: "bot", text: "Thanks! What’s your last name?" },
         ]);
       }, 600);
-    } else if (step === 2) {
-      setFormData((prev) => ({ ...prev, lastName: text }));
+    }
+
+    if (step === 2) {
+      if (!isName(reply)) {
+        return setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Please enter a valid last name " },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, lastName: reply }));
       setStep(3);
-      setTimeout(() => {
+      return setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           { sender: "bot", text: "Great! What's your company name?" },
         ]);
       }, 600);
-    } else if (step === 3) {
-      setFormData((prev) => ({ ...prev, company: text }));
+    }
+
+    if (step === 3) {
+      if (reply.length < 2) {
+        return setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Company name cannot be empty " },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, company: reply }));
       setStep(4);
-      setTimeout(() => {
+      return setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           { sender: "bot", text: "Can you share your email address?" },
         ]);
       }, 600);
-    } else if (step === 4) {
-      setFormData((prev) => ({ ...prev, email: text }));
+    }
+
+    if (step === 4) {
+      if (!isEmail(reply)) {
+        return setMessages((prev) => [
+          ...prev,
+          { sender: "bot", text: "Please enter a valid email address " },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, email: reply }));
       setStep(5);
-      setTimeout(() => {
+      return setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           { sender: "bot", text: "And your phone number? (optional)" },
         ]);
       }, 600);
-    } else if (step === 5) {
-      setFormData((prev) => ({ ...prev, phone: text }));
+    }
+
+    if (step === 5) {
+      if (reply && !isPhone(reply)) {
+        return setMessages((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            text: "Phone number must be at least 10 digits ",
+          },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, phone: reply }));
       setStep(6);
-      setTimeout(() => {
+      return setTimeout(() => {
         setMessages((prev) => [
           ...prev,
           { sender: "bot", text: "Finally, how can we help you?" },
         ]);
       }, 600);
-    } else if (step === 6) {
-      setFormData((prev) => ({ ...prev, requirement: text }));
+    }
+
+    if (step === 6) {
+      if (reply.length < 3) {
+        return setMessages((prev) => [
+          ...prev,
+          {
+            sender: "bot",
+            text: "Please describe your requirement in a few words ",
+          },
+        ]);
+      }
+
+      setFormData((p) => ({ ...p, requirement: reply }));
       setStep(7);
 
       setTimeout(() => {
@@ -144,13 +205,10 @@ export function useChatbot() {
         ]);
       }, 600);
 
-      console.log("📩 New Lead Captured:", {
+      await sendToBackend({
         ...formData,
-        requirement: text,
+        requirement: reply,
       });
-
-     
-      await sendToBackend({ ...formData, requirement: text });
     }
   };
 
@@ -161,7 +219,6 @@ export function useChatbot() {
     userInput,
     setUserInput,
     handleUserReply,
-    step,
-    formData,
+    bottomRef,
   };
 }
