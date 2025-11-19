@@ -21,7 +21,6 @@ export default function Footer() {
         overflow-hidden
       "
     >
- 
       <div
         className="
           max-w-6xl mx-auto
@@ -32,7 +31,6 @@ export default function Footer() {
           gap-8 sm:gap-10 md:gap-12
         "
       >
-
         <MotionDiv
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -40,7 +38,7 @@ export default function Footer() {
           viewport={{ once: true }}
           className="pr-4"
         >
-          <h3 className="text-lg sm:text-xl font-semibold mb-4">EIPP Vault</h3>
+          <h2 className="text-lg sm:text-xl font-semibold mb-4">EIPP Vault</h2>
 
           <p className="text-sm leading-relaxed mb-1">
             2/13 Muthumariamman Kovil Street
@@ -51,7 +49,6 @@ export default function Footer() {
 
           <p className="text-sm leading-relaxed mt-2">✉️ info@eippvault.com</p>
         </MotionDiv>
-
 
         <MotionDiv
           initial={{ opacity: 0, y: 40 }}
@@ -97,8 +94,16 @@ export default function Footer() {
 
           <div className="flex gap-5 sm:gap-6 text-2xl">
             {[
-              { href: "https://www.linkedin.com", icon: <FaLinkedin /> },
-              { href: "https://www.facebook.com", icon: <FaFacebook /> },
+              {
+                href: "https://www.linkedin.com",
+                label: "LinkedIn",
+                icon: <FaLinkedin aria-hidden="true" />,
+              },
+              {
+                href: "https://www.facebook.com",
+                label: "Facebook",
+                icon: <FaFacebook aria-hidden="true" />,
+              },
             ].map((social, i) => (
               <MotionSpan
                 key={i}
@@ -109,6 +114,8 @@ export default function Footer() {
                 <Link
                   href={social.href}
                   target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit our ${social.label} page`}
                   className="hover:text-green-200 transition"
                 >
                   {social.icon}

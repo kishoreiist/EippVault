@@ -25,7 +25,6 @@ export default function ContactUs() {
             px-4 sm:px-6 lg:px-8
           "
         >
-
           <MotionDiv
             initial={{ opacity: 0, x: 60 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -39,7 +38,7 @@ export default function ContactUs() {
             "
           >
             <Image
-              src="/hero.png"
+              src="/hero.webp"
               width={500}
               height={400}
               alt="Business"
@@ -96,12 +95,18 @@ export default function ContactUs() {
             >
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div>
-                  <label className="text-sm">First name *</label>
+                  <label htmlFor="firstName" className="text-sm">
+                    First name *
+                  </label>
+
                   <input
+                    id="firstName"
                     {...register("firstName")}
                     disabled={isPending}
-                    className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                    className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                   />
+
                   {errors.firstName && (
                     <p className="text-red-600 text-xs mt-1">
                       {errors.firstName.message}
@@ -110,12 +115,18 @@ export default function ContactUs() {
                 </div>
 
                 <div>
-                  <label className="text-sm">Last name *</label>
+                  <label htmlFor="lastName" className="text-sm">
+                    Last name *
+                  </label>
+
                   <input
+                    id="lastName"
                     {...register("lastName")}
                     disabled={isPending}
-                    className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                    className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                   />
+
                   {errors.lastName && (
                     <p className="text-red-600 text-xs mt-1">
                       {errors.lastName.message}
@@ -125,14 +136,20 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label className="text-sm">Company Name *</label>
+                <label htmlFor="companyName" className="text-sm">
+                  Company Name *
+                </label>
+
                 <input
+                  id="companyName"
                   {...register("companyName", {
                     required: "Company name is required",
                   })}
                   disabled={isPending}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
+
                 {errors.companyName && (
                   <p className="text-red-600 text-xs mt-1">
                     {errors.companyName.message}
@@ -141,13 +158,19 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label className="text-sm">Email *</label>
+                <label htmlFor="email" className="text-sm">
+                  Email *
+                </label>
+
                 <input
-                  {...register("email")}
+                  id="email"
                   type="email"
+                  {...register("email")}
                   disabled={isPending}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
+
                 {errors.email && (
                   <p className="text-red-600 text-xs mt-1">
                     {errors.email.message}
@@ -156,12 +179,19 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label className="text-sm">Phone number</label>
+                <label htmlFor="phone" className="text-sm">
+                  Phone number
+                </label>
+
                 <input
+                  id="phone"
+                  type="tel"
                   {...register("phone")}
                   disabled={isPending}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
+                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50"
                 />
+
                 {errors.phone && (
                   <p className="text-red-600 text-xs mt-1">
                     {errors.phone.message}
@@ -170,13 +200,19 @@ export default function ContactUs() {
               </div>
 
               <div>
-                <label className="text-sm">Message *</label>
+                <label htmlFor="message" className="text-sm">
+                  Message *
+                </label>
+
                 <textarea
+                  id="message"
                   {...register("message")}
                   rows={4}
                   disabled={isPending}
-                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:border-[#66B2FF] disabled:opacity-50 resize-none"
-                />
+                  className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 text-sm 
+               focus:outline-none focus:border-[#66B2FF] disabled:opacity-50 resize-none"
+                ></textarea>
+
                 {errors.message && (
                   <p className="text-red-600 text-xs mt-1">
                     {errors.message.message}

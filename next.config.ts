@@ -1,7 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  experimental: {
+    legacyBrowsers: false,
+    optimizePackageImports: ["react", "react-dom"],
+  },
+  swcMinify: true,  
 };
 
-export default nextConfig;
+module.exports = nextConfig;

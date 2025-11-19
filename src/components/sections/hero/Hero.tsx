@@ -41,14 +41,14 @@ export default function Hero() {
             ].map((dir, i) => (
               <MotionImg
                 key={i}
-                src="/doc.jpg"
+                src="/doc.webp"
+                alt="Floating document icon"
                 className="absolute w-10 h-10"
                 loading="lazy"
                 initial={{
                   opacity: 0,
                   scale: 0.8,
 
-    
                   x:
                     dir === "left"
                       ? -150
@@ -84,7 +84,7 @@ export default function Hero() {
                   x: 0,
                   y: 0,
                   scale: [0.8, 0.5, 0],
-                  rotate: [0, 15, -15], 
+                  rotate: [0, 15, -15],
                 }}
                 transition={{
                   duration: 0.8,

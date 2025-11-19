@@ -174,14 +174,14 @@ export const certifications: tCertification[] = [
     title: "ISO 9001:2015 Certification",
     description:
       "EIPP Solutions is an ISO 9001:2015 certified company, dedicated to maintaining the highest standards of quality and excellence in every aspect of our operations. Our Quality Management System (QMS) ensures that all processes are well-defined, monitored, and continuously improved to meet customer expectations and regulatory requirements.",
-    image: "/logo2.jpg",
+    image: "/logo2.webp",
     imgHeight: "h-36",
   },
   {
     title: "ISO/IEC 27001:2022 Certification",
     description:
       "The ISO Certification is a seal from a third-party body that confirms the company runs an internationally recognized management system. It enhances credibility, supports business tenders, and instills confidence among clients about our practices.",
-    image: "/logo3.jpg",
+    image: "/logo3.webp",
     imgHeight: "h-36",
   },
   {
@@ -195,7 +195,7 @@ export const certifications: tCertification[] = [
     title: "SOC 2 Certification",
     description:
       "SOC 2 (Service Organization Control 2) compliance demonstrates our commitment to managing customer data based on key trust principles — Security, Availability, Processing Integrity, Confidentiality, and Privacy. Together, these standards reinforce EIPP Solutions’ dedication to delivering secure, transparent, and reliable solutions, ensuring our clients’ information and systems are always protected to the highest industry standards.",
-    image: "/logo1.png",
+    image: "/logo1.webp",
     imgHeight: "h-28",
   },
 ];
