@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.eippvault.com
+
+# Sitemaps
+Sitemap: https://www.eippvault.com/sitemap.xml

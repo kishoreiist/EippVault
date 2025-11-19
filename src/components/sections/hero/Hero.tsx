@@ -15,14 +15,14 @@ export default function Hero() {
       className="relative bg-linear-to-l from-eipp-primary to-eipp-secondary text-white 
       py-16 md:py-28 xl:py-48 px-4 md:px-6 text-center overflow-hidden"
     >
+
       <MotionDiv
         initial={{ opacity: 0.2, scale: 0.8 }}
         animate={{ opacity: [0.2, 0.35, 0.2], scale: [0.8, 1.1, 0.8] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0 bg-gradient-radial from-white/10 via-transparent to-transparent blur-3xl"
       />
-
-      <div className="max-w-5xl mx-auto relative z-10">
+     <div className="max-w-5xl mx-auto relative z-10">
         <MotionDiv
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
@@ -42,7 +42,6 @@ export default function Hero() {
               <MotionImg
                 key={i}
                 src="/doc.webp"
-                alt="Floating document icon"
                 className="absolute w-10 h-10"
                 loading="lazy"
                 initial={{
