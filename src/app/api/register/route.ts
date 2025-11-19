@@ -2,7 +2,7 @@ export const runtime = "nodejs";
 
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
-import { appendFile, mkdir, access, constants } from "fs/promises";
+import { readFile, writeFile, mkdir, access, constants } from "fs/promises";
 import path from "path";
 
 type tContactRequestBody = {
@@ -34,11 +34,6 @@ export async function POST(req: Request) {
               <tr><td style="font-weight:bold; padding:8px;">Phone:</td><td>${phone || "N/A"}</td></tr>
               <tr><td style="font-weight:bold; padding:8px; vertical-align:top;">Message:</td><td>${message}</td></tr>
             </table>
-            <p style="margin-top:25px; font-size:13px; color:#666;">This message was sent from EIPP Vault's register form.</p>
-          </div>
-          <div style="background-color:#f3f4f6; padding:15px; text-align:center; font-size:13px; color:#777;">
-            <p style="margin:0;">EIPP Vault — Chennai, India</p>
-            <a href="https://eippvault.com" style="color:#0066b3; text-decoration:none;">www.eippvault.com</a>
           </div>
         </div>
       </div>
@@ -54,33 +49,42 @@ export async function POST(req: Request) {
       },
     });
 
-    const logsDir = path.join(process.cwd(), "contact_logs");
-    const logFile = path.join(logsDir, "contacts.json");
 
-    try {
+    if (process.env.NODE_ENV === "development") {
+      const logsDir = path.join(process.cwd(), "contact_logs");
+      const logFile = path.join(logsDir, "contacts.json");
 
+    
       await access(logsDir, constants.F_OK).catch(async () => {
         await mkdir(logsDir, { recursive: true });
       });
-    } catch (dirErr) {
-      console.error("❌ Failed to create log directory:", dirErr);
-    }
 
-    const logEntry = {
-      firstName,
-      lastName,
-      companyName,
-      email,
-      phone: phone || "N/A",
-      message,
-      date: new Date().toISOString(),
-    };
+ 
+      let existingData: any[] = [];
+      try {
+        const fileContent = await readFile(logFile, "utf8");
+        existingData = JSON.parse(fileContent);
+      } catch {
+        existingData = [];
+      }
 
-    try {
-      await appendFile(logFile, JSON.stringify(logEntry) + "\n", "utf8");
-      console.log("✅ Contact data saved locally:", logEntry);
-    } catch (writeErr) {
-      console.error("❌ Error writing log file:", writeErr);
+
+      existingData.push({
+        firstName,
+        lastName,
+        companyName,
+        email,
+        phone: phone || "N/A",
+        message,
+        date: new Date().toISOString(),
+      });
+
+
+      await writeFile(logFile, JSON.stringify(existingData, null, 2), "utf8");
+
+      console.log("📁 Saved to local contacts.json");
+    } else {
+      console.log("⚠ Skipping file storage — running in production");
     }
 
     await transporter.sendMail({
@@ -92,6 +96,7 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true });
+
   } catch (err: any) {
     console.error("❌ Error in /api/register:", err);
     return NextResponse.json(
