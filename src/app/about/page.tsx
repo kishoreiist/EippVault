@@ -5,17 +5,16 @@ import { MotionDiv, MotionSpan } from "@/src/motion/motion/framer_motion";
 export default function About() {
   return (
     <MotionDiv
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.9, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       className="w-full"
     >
       <main
         id="about"
         className="w-full bg-bg text-text leading-relaxed overflow-x-hidden"
       >
-   
         <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-10 text-base sm:text-lg">
           <h1 className="text-2xl sm:text-3xl font-semibold text-eipp-primary mb-6">
             About Us
@@ -38,8 +37,12 @@ export default function About() {
             grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14
           "
         >
-    
-          <div>
+          <MotionDiv
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-lg sm:text-xl font-semibold mb-3 text-eipp-primary">
               Who We Are
             </h2>
@@ -53,14 +56,16 @@ export default function About() {
               which is why our systems are designed to be clean, practical, and
               easy to use.
             </p>
-          </div>
-
-      
-          <div>
+          </MotionDiv>
+          <MotionDiv
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
             <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
               What We Do
             </h2>
-
             <MotionDiv
               initial="hidden"
               whileInView="visible"
@@ -80,7 +85,7 @@ export default function About() {
                     hidden: { opacity: 0, x: -30 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
                   className="flex items-start space-x-2"
                 >
                   <MotionSpan
@@ -106,10 +111,9 @@ export default function About() {
               Our solutions help companies reduce paperwork, avoid errors, and
               work smarter every day.
             </p>
-          </div>
+          </MotionDiv>
         </section>
 
- 
         <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-10">
           <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
             Industries We Support
@@ -136,7 +140,7 @@ export default function About() {
                   hidden: { opacity: 0, x: -30 },
                   visible: { opacity: 1, x: 0 },
                 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
                 className="flex items-start space-x-2"
               >
                 <MotionSpan
@@ -165,25 +169,31 @@ export default function About() {
           </p>
         </section>
 
-  
         <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-8">
-          <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
-            Our Mission
-          </h2>
+          <MotionDiv
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
+              Our Mission
+            </h2>
 
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-            To simplify everyday business operations by transforming paperwork
-            into smart, secure, and seamless digital workflows.
-          </p>
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+              To simplify everyday business operations by transforming paperwork
+              into smart, secure, and seamless digital workflows.
+            </p>
 
-          <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mt-8 mb-3">
-            Our Vision
-          </h2>
+            <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mt-8 mb-3">
+              Our Vision
+            </h2>
 
-          <p className="text-sm sm:text-base md:text-lg leading-relaxed">
-            To be a trusted partner for organizations looking to work faster,
-            stay organized, and operate with confidence in a digital world.
-          </p>
+            <p className="text-sm sm:text-base md:text-lg leading-relaxed">
+              To be a trusted partner for organizations looking to work faster,
+              stay organized, and operate with confidence in a digital world.
+            </p>
+          </MotionDiv>
         </section>
       </main>
     </MotionDiv>

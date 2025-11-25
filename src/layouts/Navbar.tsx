@@ -27,7 +27,7 @@ export default function Navbar() {
         className="flex justify-between items-center px-6 py-3 bg-white shadow-md sticky top-0 z-50 backdrop-blur-md bg-opacity-90"
       >
         <Link href="/" className="flex items-center space-x-2">
-          <Image src="/logo.png" alt="Logo" width={70} height={70} />
+          <Image src="/logo6.webp" alt="Logo" width={70} height={70} />
         </Link>
 
         <nav className="hidden md:flex space-x-8 text-sm font-medium relative">

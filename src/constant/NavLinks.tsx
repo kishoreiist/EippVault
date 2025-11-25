@@ -1,7 +1,7 @@
 export const menus = [
   { name: "Home", href: "/" },
 
-  { name: "About Us", href: "/#about" },
+  { name: "About Us", href: "/about" },
 
   {
     name: "Solutions",
@@ -41,9 +41,9 @@ export const menus = [
     ],
   },
 
-  { name: "Pricing", href: "/#pricing" },
+  { name: "Pricing", href: "/price" },
 
-  { name: "Contact Us", href: "/#contact-us" },
+  { name: "Contact Us", href: "/contact-us" },
 
-  { name: "Certifications", href: "/#certifications" },
+  { name: "Certifications", href: "/certifications" },
 ];

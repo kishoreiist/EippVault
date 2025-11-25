@@ -10,34 +10,46 @@ export default function Footer() {
 
   return (
     <MotionDiv
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      viewport={{ once: true }}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}   // smoother & faster than whileInView
+      transition={{ duration: 0.6, ease: "easeOut" }}
       className="
-        bg-eipp-primary text-white 
-        py-10 sm:py-12 
-        px-5 sm:px-10 
+        relative
+        bg-eipp-primary
+        text-white 
+        pt-10 sm:pt-14    
+        pb-6 sm:pb-8       
+        px-3 sm:px-10 
         overflow-hidden
       "
+      style={{ willChange: "opacity, transform" }} // GPU acceleration
     >
-      <div
-        className="
-          max-w-6xl mx-auto
-          grid 
-          grid-cols-1 
-          sm:grid-cols-2 
-          md:grid-cols-3 
-          gap-8 sm:gap-10 md:gap-12
-        "
-      >
-        <MotionDiv
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="pr-4"
+      {/* Wave border */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+        <svg
+          className="relative block w-full h-10"
+          viewBox="0 0 1440 100"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
         >
+          <path
+            d="M0,40 C360,120 1080,-40 1440,40 L1440,00 L0,0 Z"
+            fill="#ffffff"
+          />
+        </svg>
+      </div>
+
+      {/* CONTENT */}
+      <div className="
+        max-w-6xl mx-auto
+        grid 
+        grid-cols-1 
+        sm:grid-cols-2 
+        md:grid-cols-3 
+        gap-8 sm:gap-10 md:gap-12
+      ">
+        {/* Company Info */}
+        <div>
           <h2 className="text-lg sm:text-xl font-semibold mb-4">EIPP Vault</h2>
 
           <p className="text-sm leading-relaxed mb-1">
@@ -48,48 +60,30 @@ export default function Footer() {
           </p>
 
           <p className="text-sm leading-relaxed mt-2">✉️ info@eippvault.com</p>
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
-          viewport={{ once: true }}
-          className="pl-1"
-        >
+        {/* Quick Links */}
+        <div>
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Quick Links</h3>
 
           <ul className="space-y-3 text-sm">
             {[
               { href: "#home", label: "Home" },
-              { href: "#about", label: "About Us" },
-              { href: "#pricing", label: "Pricing" },
-              { href: "#contact-us", label: "Contact Us" },
-            ].map((link, i) => (
-              <MotionDiv
-                key={link.href}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Link
-                  href={link.href}
-                  className="hover:text-green-200 transition"
-                >
+              { href: "/about", label: "About Us" },
+              { href: "/pricing", label: "Pricing" },
+              { href: "/contact-us", label: "Contact Us" },
+            ].map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-green-200 transition">
                   {link.label}
                 </Link>
-              </MotionDiv>
+              </li>
             ))}
           </ul>
-        </MotionDiv>
+        </div>
 
-        <MotionDiv
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.25 }}
-          viewport={{ once: true }}
-        >
+        {/* Social Icons */}
+        <div>
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Follow Us</h3>
 
           <div className="flex gap-5 sm:gap-6 text-2xl">
@@ -107,15 +101,12 @@ export default function Footer() {
             ].map((social, i) => (
               <MotionSpan
                 key={i}
-                whileHover={{ scale: 1.2, rotate: 8 }}
-                whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 250, damping: 12 }}
+                whileHover={{ scale: 1.1 }}
+                transition={{ duration: 0.2 }}
               >
                 <Link
                   href={social.href}
                   target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Visit our ${social.label} page`}
                   className="hover:text-green-200 transition"
                 >
                   {social.icon}
@@ -123,23 +114,13 @@ export default function Footer() {
               </MotionSpan>
             ))}
           </div>
-        </MotionDiv>
+        </div>
       </div>
 
-      <MotionDiv
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.3 }}
-        viewport={{ once: true }}
-        className="
-          text-center text-xs sm:text-sm 
-          text-blue-50 mt-10 
-          border-t border-blue-200 
-          pt-4
-        "
-      >
+      {/* Footer Bottom */}
+      <div className="text-center text-xs sm:text-sm text-blue-50 mt-8 border-t border-blue-200 pt-3">
         © {currentYear} EIPP Vault. All rights reserved.
-      </MotionDiv>
+      </div>
     </MotionDiv>
   );
 }
