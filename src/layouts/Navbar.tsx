@@ -6,7 +6,6 @@ import Link from "next/link";
 import { Menu, X, ChevronDown, ChevronUp } from "lucide-react";
 import {
   MotionDiv,
-  MotionButton,
   MotionAnimatePresence,
 } from "@/src/motion/motion/framer_motion";
 import { menus } from "../constant/NavLinks";
@@ -26,32 +25,42 @@ export default function Navbar() {
         onMouseLeave={() => setActiveMenu(null)}
         className="flex justify-between items-center px-6 py-3 bg-white shadow-md sticky top-0 z-50 backdrop-blur-md bg-opacity-90"
       >
-        <Link href="/" className="flex items-center space-x-2">
-          <Image src="/logo6.webp" alt="Logo" width={70} height={70} />
+        <Link href="/" className="flex items-center space-x-6 pl-4">
+          <Image src="/logo6.webp" alt="Logo" width={55} height={55} />
         </Link>
 
-        <nav className="hidden md:flex space-x-8 text-sm font-medium relative">
+        <nav className="hidden md:flex flex-1 justify-center space-x-8 text-sm font-medium relative">
           {menus.map((menu) => (
             <div
               key={menu.name}
               className="relative group"
               onMouseEnter={() => setActiveMenu(menu.name)}
             >
-              <Link
-                href={menu.href}
-                className="text-gray-700 hover:text-eipp-primary transition"
-              >
-                {menu.name}
-              </Link>
+              {menu.submenu ? (
+                <button
+                  className="text-gray-700 hover:text-eipp-primary transition"
+                  onClick={() => setActiveMenu(menu.name)}
+                >
+                  {menu.name}
+                </button>
+              ) : (
+                <Link
+                  href={menu.href}
+                  className="text-gray-700 hover:text-eipp-primary transition"
+                >
+                  {menu.name}
+                </Link>
+              )}
+
 
               {menu.submenu && activeMenu === menu.name && (
                 <div
                   className="
-                    absolute left-0 mt-3 
-                    min-w-[360px]       /* <-- Bigger width */
-                    bg-gray-300 shadow-lg 
-                    rounded-md py-2 
-                  "
+            absolute left-0 mt-3 
+            min-w-[360px]
+            bg-gray-300 shadow-lg 
+            rounded-md py-2 
+          "
                 >
                   {menu.submenu.map((sub) => (
                     <Link
@@ -69,23 +78,10 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <button
-          onClick={() =>
-            document.getElementById("contact-us")?.scrollIntoView({
-              behavior: "smooth",
-            })
-          }
-          className="hidden md:block bg-eipp-secondary text-white px-4 py-2 rounded-md"
-        >
-          Request a demo
-        </button>
-
-
         <button onClick={() => setOpenMobile(true)} className="md:hidden">
           <Menu size={30} />
         </button>
       </div>
-
       <MotionAnimatePresence>
         {openMobile && (
           <MotionDiv
@@ -98,7 +94,6 @@ export default function Navbar() {
         )}
       </MotionAnimatePresence>
 
- 
       <MotionAnimatePresence>
         {openMobile && (
           <MotionDiv
@@ -108,7 +103,6 @@ export default function Navbar() {
             transition={{ duration: 0.3 }}
             className="fixed top-0 right-0 w-72 h-full bg-white z-[70] p-6 shadow-lg overflow-y-auto"
           >
-    
             <button
               onClick={() => setOpenMobile(false)}
               className="self-end mb-6"
@@ -116,7 +110,6 @@ export default function Navbar() {
               <X size={28} />
             </button>
 
-  
             <div className="space-y-4">
               {menus.map((menu) => (
                 <div key={menu.name}>
@@ -139,8 +132,6 @@ export default function Navbar() {
                         <ChevronDown size={20} />
                       ))}
                   </button>
-
-   
                   {menu.submenu && openSub === menu.name && (
                     <MotionDiv
                       initial={{ height: 0, opacity: 0 }}
@@ -164,18 +155,6 @@ export default function Navbar() {
               ))}
             </div>
 
-
-            <MotionButton
-              onClick={() => {
-                setOpenMobile(false);
-                document
-                  .getElementById("contact-us")
-                  ?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="mt-8 bg-eipp-secondary text-white py-2 rounded-md w-full"
-            >
-              Request a demo
-            </MotionButton>
           </MotionDiv>
         )}
       </MotionAnimatePresence>

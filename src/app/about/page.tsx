@@ -5,10 +5,10 @@ import { MotionDiv, MotionSpan } from "@/src/motion/motion/framer_motion";
 export default function About() {
   return (
     <MotionDiv
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 6 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.45, ease: "easeOut" }}
       className="w-full"
     >
       <main
@@ -38,9 +38,9 @@ export default function About() {
           "
         >
           <MotionDiv
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             <h2 className="text-lg sm:text-xl font-semibold mb-3 text-eipp-primary">
@@ -57,20 +57,22 @@ export default function About() {
               easy to use.
             </p>
           </MotionDiv>
+
           <MotionDiv
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.05 }}
             viewport={{ once: true }}
           >
             <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">
               What We Do
             </h2>
+
             <MotionDiv
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              transition={{ staggerChildren: 0.2 }}
+              transition={{ staggerChildren: 0.12 }}
               className="ml-3 sm:ml-6 space-y-2"
             >
               {[
@@ -82,27 +84,25 @@ export default function About() {
                 <MotionDiv
                   key={index}
                   variants={{
-                    hidden: { opacity: 0, x: -30 },
+                    hidden: { opacity: 0, x: -8 },
                     visible: { opacity: 1, x: 0 },
                   }}
-                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  transition={{ duration: 0.35, ease: "easeOut" }}
                   className="flex items-start space-x-2"
                 >
                   <MotionSpan
                     className="text-eipp-primary text-lg"
-                    initial={{ scale: 0 }}
-                    whileInView={{ scale: 1 }}
+                    initial={{ scale: 0.85, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
                     transition={{
                       type: "spring",
-                      stiffness: 300,
-                      damping: 15,
+                      stiffness: 120,
+                      damping: 18,
                     }}
                   >
                     •
                   </MotionSpan>
-                  <span className="text-sm sm:text-base md:text-lg">
-                    {item}
-                  </span>
+                  <span className="text-sm sm:text-base md:text-lg">{item}</span>
                 </MotionDiv>
               ))}
             </MotionDiv>
@@ -123,7 +123,7 @@ export default function About() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            transition={{ staggerChildren: 0.15 }}
+            transition={{ staggerChildren: 0.12 }}
             className="ml-3 sm:ml-6 space-y-2"
           >
             {[
@@ -137,28 +137,26 @@ export default function About() {
               <MotionDiv
                 key={index}
                 variants={{
-                  hidden: { opacity: 0, x: -30 },
+                  hidden: { opacity: 0, x: -8 },
                   visible: { opacity: 1, x: 0 },
                 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
                 className="flex items-start space-x-2"
               >
                 <MotionSpan
                   className="text-eipp-primary text-lg"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ scale: 0.85, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
                   transition={{
                     type: "spring",
-                    stiffness: 300,
-                    damping: 15,
+                    stiffness: 120,
+                    damping: 18,
                   }}
                 >
                   •
                 </MotionSpan>
 
-                <span className="text-sm sm:text-base md:text-lg">
-                  {item}
-                </span>
+                <span className="text-sm sm:text-base md:text-lg">{item}</span>
               </MotionDiv>
             ))}
           </MotionDiv>
@@ -171,9 +169,9 @@ export default function About() {
 
         <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-8">
           <MotionDiv
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
+            initial={{ opacity: 0, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
             viewport={{ once: true }}
           >
             <h2 className="text-lg sm:text-xl font-semibold text-eipp-primary mb-3">

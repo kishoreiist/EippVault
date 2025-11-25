@@ -9,7 +9,7 @@ const Price: React.FC = () => {
   return (
     <section id="pricing" className="w-full">
       <div className="bg-gray-100">
- 
+
         <div className="text-center py-12">
           <h2 className="text-3xl font-semibold text-eipp-primary">
             Choose the Plan that Fits Your Team
@@ -19,17 +19,16 @@ const Price: React.FC = () => {
           </p>
         </div>
 
-
         <div className="flex items-center justify-center p-8 pb-40">
           <div className="max-w-6xl w-full grid grid-cols-1 md:grid-cols-3 gap-8">
             {pricingPlans.map((plan, index) => (
               <MotionDiv
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{
-                  duration: 0.6,
-                  delay: index * 0.2,
+                  duration: 0.35,
+                  delay: index * 0.12,
                   ease: "easeOut",
                 }}
                 viewport={{ once: true, amount: 0.2 }}
@@ -46,6 +45,7 @@ const Price: React.FC = () => {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

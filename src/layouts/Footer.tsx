@@ -11,7 +11,7 @@ export default function Footer() {
   return (
     <MotionDiv
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}   // smoother & faster than whileInView
+      animate={{ opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       className="
         relative
@@ -22,10 +22,10 @@ export default function Footer() {
         px-3 sm:px-10 
         overflow-hidden
       "
-      style={{ willChange: "opacity, transform" }} // GPU acceleration
+      style={{ willChange: "opacity, transform" }}
     >
       {/* Wave border */}
-      <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
+      {/* <div className="absolute top-0 left-0 w-full overflow-hidden leading-[0]">
         <svg
           className="relative block w-full h-10"
           viewBox="0 0 1440 100"
@@ -37,18 +37,18 @@ export default function Footer() {
             fill="#ffffff"
           />
         </svg>
-      </div>
+      </div> */}
 
-      {/* CONTENT */}
-      <div className="
+      <div
+        className="
         max-w-6xl mx-auto
         grid 
         grid-cols-1 
         sm:grid-cols-2 
         md:grid-cols-3 
         gap-8 sm:gap-10 md:gap-12
-      ">
-        {/* Company Info */}
+      "
+      >
         <div>
           <h2 className="text-lg sm:text-xl font-semibold mb-4">EIPP Vault</h2>
 
@@ -59,22 +59,29 @@ export default function Footer() {
             West Tambaram, Chennai, India.
           </p>
 
-          <p className="text-sm leading-relaxed mt-2">✉️ info@eippvault.com</p>
+          <Link
+            href="mailto:info@eippvault.com"
+            className="text-sm leading-relaxed mt-2 hover:text-eipp-secondary transition-colors"
+          >
+            ✉️ info@eippvault.com
+          </Link>
         </div>
 
-        {/* Quick Links */}
         <div>
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Quick Links</h3>
 
           <ul className="space-y-3 text-sm">
             {[
-              { href: "#home", label: "Home" },
+              { href: "/", label: "Home" },
               { href: "/about", label: "About Us" },
-              { href: "/pricing", label: "Pricing" },
+              { href: "/price", label: "Pricing" },
               { href: "/contact-us", label: "Contact Us" },
             ].map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-green-200 transition">
+                <Link
+                  href={link.href}
+                  className="hover:text-green-200 transition"
+                >
                   {link.label}
                 </Link>
               </li>
@@ -82,7 +89,6 @@ export default function Footer() {
           </ul>
         </div>
 
-        {/* Social Icons */}
         <div>
           <h3 className="text-lg sm:text-xl font-semibold mb-4">Follow Us</h3>
 
@@ -117,7 +123,6 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Footer Bottom */}
       <div className="text-center text-xs sm:text-sm text-blue-50 mt-8 border-t border-blue-200 pt-3">
         © {currentYear} EIPP Vault. All rights reserved.
       </div>
