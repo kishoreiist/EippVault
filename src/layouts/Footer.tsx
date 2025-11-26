@@ -95,7 +95,7 @@ export default function Footer() {
           <div className="flex gap-5 sm:gap-6 text-2xl">
             {[
               {
-                href: "https://www.linkedin.com",
+                href: "https://www.linkedin.com/company/eipp-solutions/posts/?feedView=all",
                 label: "LinkedIn",
                 icon: <FaLinkedin aria-hidden="true" />,
               },

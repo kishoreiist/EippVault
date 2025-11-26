@@ -4,17 +4,18 @@ import { MotionDiv, MotionSpan } from "@/src/motion/motion/framer_motion";
 
 export default function About() {
   return (
-    <MotionDiv
+    <main
+        id="/about"
+        className="w-full bg-bg text-text leading-relaxed overflow-x-hidden"
+      >
+    {/* <MotionDiv
       initial={{ opacity: 0, y: 6 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.45, ease: "easeOut" }}
       className="w-full"
-    >
-      <main
-        id="about"
-        className="w-full bg-bg text-text leading-relaxed overflow-x-hidden"
-      >
+    > */}
+      
         <section className="max-w-5xl mx-auto px-5 sm:px-6 md:px-8 py-10 text-base sm:text-lg">
           <h1 className="text-2xl sm:text-3xl font-semibold text-eipp-primary mb-6">
             About Us
@@ -194,6 +195,6 @@ export default function About() {
           </MotionDiv>
         </section>
       </main>
-    </MotionDiv>
+    
   );
 }
