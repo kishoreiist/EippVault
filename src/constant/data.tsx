@@ -8,6 +8,7 @@ export type tSolutionsData = {
 export type tPricingPlan = {
   title: string;
   price: string;
+  month: string;
   description: string;
   features: string[];
   delivery: string;
@@ -69,6 +70,7 @@ export const pricingPlans: tPricingPlan[] = [
   {
     title: "Standard Plan",
     price: "₹4,000",
+    month: "monthly+GST",
     description:
       "Ideal for small teams looking to securely manage documents with essential features.",
     features: [
@@ -83,6 +85,7 @@ export const pricingPlans: tPricingPlan[] = [
   {
     title: "Professional Plan",
     price: "₹20,000",
+    month: "monthly+GST",
     description:
       "Perfect for growing organizations needing collaboration and advanced document security.",
     features: [
@@ -98,6 +101,7 @@ export const pricingPlans: tPricingPlan[] = [
   {
     title: "Premium Plan",
     price: "₹50,000",
+    month: "monthly+GST",
     description:
       "For enterprises requiring maximum security, integrations, and dedicated support.",
     features: [

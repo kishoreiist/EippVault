@@ -6,6 +6,7 @@ import { tPricingPlan } from "@/src/constant/data";
 const PricingCard: React.FC<tPricingPlan> = ({
   title,
   price,
+  month,
   description,
   features,
   highlight = false,
@@ -34,7 +35,19 @@ const PricingCard: React.FC<tPricingPlan> = ({
           >
             {title}
           </div>
-          <h2 className="text-4xl font-bold mb-4 text-black">{price}</h2>
+          <div className="flex items-end gap-2 mb-4">
+            <h2 className="text-4xl font-bold text-black">{price}</h2>
+            {month && (
+              <span
+                className={`text-[16px] font-bold tracking-wider lowercase ml-0
+      ${highlight ? "text-black" : "text-black"}
+    `}
+              >
+                / {month}
+              </span>
+            )}
+          </div>
+
           <p className={`mb-6 ${highlight ? "text-black" : "text-gray-600"}`}>
             {description}
           </p>

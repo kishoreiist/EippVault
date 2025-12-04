@@ -36,6 +36,7 @@ const Price: React.FC = () => {
                 <PricingCard
                   title={plan.title}
                   price={plan.price}
+                  month={plan.month}
                   description={plan.description}
                   features={plan.features}
                   delivery={plan.delivery}
