@@ -23,7 +23,7 @@ const PricingCard: React.FC<tPricingPlan> = ({
       <div
         className={`flex flex-col justify-between rounded-2xl shadow-lg p-8 cursor-pointer transition-all duration-300 hover:shadow-2xl ${
           highlight
-            ? "bg-linear-to-l from-eipp-primary to-eipp-secondary text-white scale-105"
+            ? "bg-linear-to-l from-eipp-primary  to-eipp-secondary text-white/90 scale-105"
             : "bg-white text-gray-800"
         }`}
       >
@@ -35,16 +35,24 @@ const PricingCard: React.FC<tPricingPlan> = ({
           >
             {title}
           </div>
-          <div className="flex items-end gap-2 mb-4">
-            <h2 className="text-4xl font-bold text-black">{price}</h2>
+          <div className="flex items-start gap-3 mb-4">
+            <h2 className="text-4xl font-bold text-black leading-none">
+              {price}
+            </h2>
             {month && (
-              <span
-                className={`text-[16px] font-bold tracking-wider lowercase ml-0
-      ${highlight ? "text-black" : "text-black"}
-    `}
-              >
-                / {month}
-              </span>
+        <div className="text-[11px] leading-[1.1] mt-1">
+
+                <p
+                  className={`${highlight ? "text-black" : "text-gray-500"}`}
+                >
+                  INR /
+                </p>
+                <p
+                  className={`${highlight ? "text-black" : "text-gray-500"}`}
+                >
+                  {month}
+                </p>
+              </div>
             )}
           </div>
 

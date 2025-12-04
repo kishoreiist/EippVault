@@ -101,7 +101,7 @@ export const pricingPlans: tPricingPlan[] = [
   {
     title: "Premium Plan",
     price: "₹50,000",
-    month: "monthly+GST",
+    month: "monthly + GST",
     description:
       "For enterprises requiring maximum security, integrations, and dedicated support.",
     features: [
